@@ -1,0 +1,766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище MalevModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Table_Auto">
+          <Key>
+            <PropertyRef Name="idAuto" />
+          </Key>
+          <Property Name="idAuto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="markAuto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="regZnak" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="colorAuto" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateRelease" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_EquipmentsUsed">
+          <Key>
+            <PropertyRef Name="idEquipmentUsed" />
+          </Key>
+          <Property Name="idEquipmentUsed" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateProduction" Type="date" Nullable="false" />
+          <Property Name="costEquipment" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Genders">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gender" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Mastera">
+          <Key>
+            <PropertyRef Name="idMaster" />
+          </Key>
+          <Property Name="idMaster" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fatherland" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idGender" Type="int" Nullable="false" />
+          <Property Name="birthday" Type="date" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="int" Nullable="false" />
+          <Property Name="idRole" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_NewsEquipment">
+          <Key>
+            <PropertyRef Name="idNewEquipment" />
+          </Key>
+          <Property Name="idNewEquipment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="dateProduction" Type="date" Nullable="false" />
+          <Property Name="costEquipment" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_OrderingServices">
+          <Key>
+            <PropertyRef Name="idOrderingServices" />
+          </Key>
+          <Property Name="idOrderingServices" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idOrder" Type="int" Nullable="false" />
+          <Property Name="idVidaRaboti" Type="int" Nullable="false" />
+          <Property Name="idMaster" Type="int" Nullable="false" />
+          <Property Name="idEquipmentUsed" Type="int" Nullable="false" />
+          <Property Name="idNewEquipment" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Orders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAuto" Type="int" Nullable="false" />
+          <Property Name="idOwner" Type="int" Nullable="false" />
+          <Property Name="dateEntrance" Type="date" Nullable="false" />
+          <Property Name="CostEstimation" Type="int" Nullable="false" />
+          <Property Name="CostCroka" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Owners">
+          <Key>
+            <PropertyRef Name="idOwner" />
+          </Key>
+          <Property Name="idOwner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fatherland" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Pasporta">
+          <Key>
+            <PropertyRef Name="idMaster" />
+          </Key>
+          <Property Name="idMaster" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="number" Type="int" Nullable="false" />
+          <Property Name="seria" Type="int" Nullable="false" />
+          <Property Name="vidan" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_Roles">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Table_VidaRabot">
+          <Key>
+            <PropertyRef Name="idVidaRaboti" />
+          </Key>
+          <Property Name="idVidaRaboti" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vidRaboti" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cost" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Table_Mastera_Table_Genders">
+          <End Role="Table_Genders" Type="Self.Table_Genders" Multiplicity="1" />
+          <End Role="Table_Mastera" Type="Self.Table_Mastera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Genders">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Table_Mastera">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Mastera_Table_Roles">
+          <End Role="Table_Roles" Type="Self.Table_Roles" Multiplicity="1" />
+          <End Role="Table_Mastera" Type="Self.Table_Mastera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Roles">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Table_Mastera">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_EquipmentsUsed">
+          <End Role="Table_EquipmentsUsed" Type="Self.Table_EquipmentsUsed" Multiplicity="1" />
+          <End Role="Table_OrderingServices" Type="Self.Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_EquipmentsUsed">
+              <PropertyRef Name="idEquipmentUsed" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idEquipmentUsed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_Mastera">
+          <End Role="Table_Mastera" Type="Self.Table_Mastera" Multiplicity="1" />
+          <End Role="Table_OrderingServices" Type="Self.Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Mastera">
+              <PropertyRef Name="idMaster" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idMaster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_NewsEquipment">
+          <End Role="Table_NewsEquipment" Type="Self.Table_NewsEquipment" Multiplicity="1" />
+          <End Role="Table_OrderingServices" Type="Self.Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_NewsEquipment">
+              <PropertyRef Name="idNewEquipment" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idNewEquipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_Orders">
+          <End Role="Table_Orders" Type="Self.Table_Orders" Multiplicity="1" />
+          <End Role="Table_OrderingServices" Type="Self.Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Orders">
+              <PropertyRef Name="idOrder" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_VidaRabot">
+          <End Role="Table_VidaRabot" Type="Self.Table_VidaRabot" Multiplicity="1" />
+          <End Role="Table_OrderingServices" Type="Self.Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_VidaRabot">
+              <PropertyRef Name="idVidaRaboti" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idVidaRaboti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Orders_Table_Auto">
+          <End Role="Table_Auto" Type="Self.Table_Auto" Multiplicity="1" />
+          <End Role="Table_Orders" Type="Self.Table_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Auto">
+              <PropertyRef Name="idAuto" />
+            </Principal>
+            <Dependent Role="Table_Orders">
+              <PropertyRef Name="idAuto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Orders_Table_Owners">
+          <End Role="Table_Owners" Type="Self.Table_Owners" Multiplicity="1" />
+          <End Role="Table_Orders" Type="Self.Table_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Owners">
+              <PropertyRef Name="idOwner" />
+            </Principal>
+            <Dependent Role="Table_Orders">
+              <PropertyRef Name="idOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pasporta_Table_Mastera">
+          <End Role="Table_Mastera" Type="Self.Table_Mastera" Multiplicity="1" />
+          <End Role="Table_Pasporta" Type="Self.Table_Pasporta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Mastera">
+              <PropertyRef Name="idMaster" />
+            </Principal>
+            <Dependent Role="Table_Pasporta">
+              <PropertyRef Name="idMaster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище MalevModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Auto" EntityType="Self.Table_Auto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_EquipmentsUsed" EntityType="Self.Table_EquipmentsUsed" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Genders" EntityType="Self.Table_Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Mastera" EntityType="Self.Table_Mastera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_NewsEquipment" EntityType="Self.Table_NewsEquipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_OrderingServices" EntityType="Self.Table_OrderingServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Orders" EntityType="Self.Table_Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Owners" EntityType="Self.Table_Owners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Pasporta" EntityType="Self.Table_Pasporta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Roles" EntityType="Self.Table_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_VidaRabot" EntityType="Self.Table_VidaRabot" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Table_Mastera_Table_Genders" Association="Self.FK_Table_Mastera_Table_Genders">
+            <End Role="Table_Genders" EntitySet="Table_Genders" />
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Mastera_Table_Roles" Association="Self.FK_Table_Mastera_Table_Roles">
+            <End Role="Table_Roles" EntitySet="Table_Roles" />
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_EquipmentsUsed" Association="Self.FK_Table_OrderingServices_Table_EquipmentsUsed">
+            <End Role="Table_EquipmentsUsed" EntitySet="Table_EquipmentsUsed" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_Mastera" Association="Self.FK_Table_OrderingServices_Table_Mastera">
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_NewsEquipment" Association="Self.FK_Table_OrderingServices_Table_NewsEquipment">
+            <End Role="Table_NewsEquipment" EntitySet="Table_NewsEquipment" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_Orders" Association="Self.FK_Table_OrderingServices_Table_Orders">
+            <End Role="Table_Orders" EntitySet="Table_Orders" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_VidaRabot" Association="Self.FK_Table_OrderingServices_Table_VidaRabot">
+            <End Role="Table_VidaRabot" EntitySet="Table_VidaRabot" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Orders_Table_Auto" Association="Self.FK_Table_Orders_Table_Auto">
+            <End Role="Table_Auto" EntitySet="Table_Auto" />
+            <End Role="Table_Orders" EntitySet="Table_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Orders_Table_Owners" Association="Self.FK_Table_Orders_Table_Owners">
+            <End Role="Table_Owners" EntitySet="Table_Owners" />
+            <End Role="Table_Orders" EntitySet="Table_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pasporta_Table_Mastera" Association="Self.FK_Table_Pasporta_Table_Mastera">
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+            <End Role="Table_Pasporta" EntitySet="Table_Pasporta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MalevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MalevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="MalevModel.sysdiagrams" />
+          <EntitySet Name="Table_Auto" EntityType="MalevModel.Table_Auto" />
+          <EntitySet Name="Table_EquipmentsUsed" EntityType="MalevModel.Table_EquipmentsUsed" />
+          <EntitySet Name="Table_Genders" EntityType="MalevModel.Table_Genders" />
+          <EntitySet Name="Table_Mastera" EntityType="MalevModel.Table_Mastera" />
+          <EntitySet Name="Table_NewsEquipment" EntityType="MalevModel.Table_NewsEquipment" />
+          <EntitySet Name="Table_OrderingServices" EntityType="MalevModel.Table_OrderingServices" />
+          <EntitySet Name="Table_Orders" EntityType="MalevModel.Table_Orders" />
+          <EntitySet Name="Table_Owners" EntityType="MalevModel.Table_Owners" />
+          <EntitySet Name="Table_Pasporta" EntityType="MalevModel.Table_Pasporta" />
+          <EntitySet Name="Table_Roles" EntityType="MalevModel.Table_Roles" />
+          <EntitySet Name="Table_VidaRabot" EntityType="MalevModel.Table_VidaRabot" />
+          <AssociationSet Name="FK_Table_Orders_Table_Auto" Association="MalevModel.FK_Table_Orders_Table_Auto">
+            <End Role="Table_Auto" EntitySet="Table_Auto" />
+            <End Role="Table_Orders" EntitySet="Table_Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_EquipmentsUsed" Association="MalevModel.FK_Table_OrderingServices_Table_EquipmentsUsed">
+            <End Role="Table_EquipmentsUsed" EntitySet="Table_EquipmentsUsed" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Mastera_Table_Genders" Association="MalevModel.FK_Table_Mastera_Table_Genders">
+            <End Role="Table_Genders" EntitySet="Table_Genders" />
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Mastera_Table_Roles" Association="MalevModel.FK_Table_Mastera_Table_Roles">
+            <End Role="Table_Roles" EntitySet="Table_Roles" />
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_Mastera" Association="MalevModel.FK_Table_OrderingServices_Table_Mastera">
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Pasporta_Table_Mastera" Association="MalevModel.FK_Table_Pasporta_Table_Mastera">
+            <End Role="Table_Mastera" EntitySet="Table_Mastera" />
+            <End Role="Table_Pasporta" EntitySet="Table_Pasporta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_NewsEquipment" Association="MalevModel.FK_Table_OrderingServices_Table_NewsEquipment">
+            <End Role="Table_NewsEquipment" EntitySet="Table_NewsEquipment" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_Orders" Association="MalevModel.FK_Table_OrderingServices_Table_Orders">
+            <End Role="Table_Orders" EntitySet="Table_Orders" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_OrderingServices_Table_VidaRabot" Association="MalevModel.FK_Table_OrderingServices_Table_VidaRabot">
+            <End Role="Table_VidaRabot" EntitySet="Table_VidaRabot" />
+            <End Role="Table_OrderingServices" EntitySet="Table_OrderingServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_Orders_Table_Owners" Association="MalevModel.FK_Table_Orders_Table_Owners">
+            <End Role="Table_Owners" EntitySet="Table_Owners" />
+            <End Role="Table_Orders" EntitySet="Table_Orders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Table_Auto">
+          <Key>
+            <PropertyRef Name="idAuto" />
+          </Key>
+          <Property Name="idAuto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="markAuto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="regZnak" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="colorAuto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateRelease" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Table_Orders" Relationship="MalevModel.FK_Table_Orders_Table_Auto" FromRole="Table_Auto" ToRole="Table_Orders" />
+        </EntityType>
+        <EntityType Name="Table_EquipmentsUsed">
+          <Key>
+            <PropertyRef Name="idEquipmentUsed" />
+          </Key>
+          <Property Name="idEquipmentUsed" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateProduction" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="costEquipment" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Table_OrderingServices" Relationship="MalevModel.FK_Table_OrderingServices_Table_EquipmentsUsed" FromRole="Table_EquipmentsUsed" ToRole="Table_OrderingServices" />
+        </EntityType>
+        <EntityType Name="Table_Genders">
+          <Key>
+            <PropertyRef Name="idGender" />
+          </Key>
+          <Property Name="idGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Table_Mastera" Relationship="MalevModel.FK_Table_Mastera_Table_Genders" FromRole="Table_Genders" ToRole="Table_Mastera" />
+        </EntityType>
+        <EntityType Name="Table_Mastera">
+          <Key>
+            <PropertyRef Name="idMaster" />
+          </Key>
+          <Property Name="idMaster" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fatherland" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="idGender" Type="Int32" Nullable="false" />
+          <Property Name="birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="Int32" Nullable="false" />
+          <Property Name="idRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Table_Genders" Relationship="MalevModel.FK_Table_Mastera_Table_Genders" FromRole="Table_Mastera" ToRole="Table_Genders" />
+          <NavigationProperty Name="Table_Roles" Relationship="MalevModel.FK_Table_Mastera_Table_Roles" FromRole="Table_Mastera" ToRole="Table_Roles" />
+          <NavigationProperty Name="Table_OrderingServices" Relationship="MalevModel.FK_Table_OrderingServices_Table_Mastera" FromRole="Table_Mastera" ToRole="Table_OrderingServices" />
+          <NavigationProperty Name="Table_Pasporta" Relationship="MalevModel.FK_Table_Pasporta_Table_Mastera" FromRole="Table_Mastera" ToRole="Table_Pasporta" />
+        </EntityType>
+        <EntityType Name="Table_NewsEquipment">
+          <Key>
+            <PropertyRef Name="idNewEquipment" />
+          </Key>
+          <Property Name="idNewEquipment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dateProduction" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="costEquipment" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Table_OrderingServices" Relationship="MalevModel.FK_Table_OrderingServices_Table_NewsEquipment" FromRole="Table_NewsEquipment" ToRole="Table_OrderingServices" />
+        </EntityType>
+        <EntityType Name="Table_OrderingServices">
+          <Key>
+            <PropertyRef Name="idOrderingServices" />
+          </Key>
+          <Property Name="idOrderingServices" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idOrder" Type="Int32" Nullable="false" />
+          <Property Name="idVidaRaboti" Type="Int32" Nullable="false" />
+          <Property Name="idMaster" Type="Int32" Nullable="false" />
+          <Property Name="idEquipmentUsed" Type="Int32" Nullable="false" />
+          <Property Name="idNewEquipment" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Table_EquipmentsUsed" Relationship="MalevModel.FK_Table_OrderingServices_Table_EquipmentsUsed" FromRole="Table_OrderingServices" ToRole="Table_EquipmentsUsed" />
+          <NavigationProperty Name="Table_Mastera" Relationship="MalevModel.FK_Table_OrderingServices_Table_Mastera" FromRole="Table_OrderingServices" ToRole="Table_Mastera" />
+          <NavigationProperty Name="Table_NewsEquipment" Relationship="MalevModel.FK_Table_OrderingServices_Table_NewsEquipment" FromRole="Table_OrderingServices" ToRole="Table_NewsEquipment" />
+          <NavigationProperty Name="Table_Orders" Relationship="MalevModel.FK_Table_OrderingServices_Table_Orders" FromRole="Table_OrderingServices" ToRole="Table_Orders" />
+          <NavigationProperty Name="Table_VidaRabot" Relationship="MalevModel.FK_Table_OrderingServices_Table_VidaRabot" FromRole="Table_OrderingServices" ToRole="Table_VidaRabot" />
+        </EntityType>
+        <EntityType Name="Table_Orders">
+          <Key>
+            <PropertyRef Name="idOrder" />
+          </Key>
+          <Property Name="idOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAuto" Type="Int32" Nullable="false" />
+          <Property Name="idOwner" Type="Int32" Nullable="false" />
+          <Property Name="dateEntrance" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CostEstimation" Type="Int32" Nullable="false" />
+          <Property Name="CostCroka" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Auto" Relationship="MalevModel.FK_Table_Orders_Table_Auto" FromRole="Table_Orders" ToRole="Table_Auto" />
+          <NavigationProperty Name="Table_OrderingServices" Relationship="MalevModel.FK_Table_OrderingServices_Table_Orders" FromRole="Table_Orders" ToRole="Table_OrderingServices" />
+          <NavigationProperty Name="Table_Owners" Relationship="MalevModel.FK_Table_Orders_Table_Owners" FromRole="Table_Orders" ToRole="Table_Owners" />
+        </EntityType>
+        <EntityType Name="Table_Owners">
+          <Key>
+            <PropertyRef Name="idOwner" />
+          </Key>
+          <Property Name="idOwner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fatherland" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Orders" Relationship="MalevModel.FK_Table_Orders_Table_Owners" FromRole="Table_Owners" ToRole="Table_Orders" />
+        </EntityType>
+        <EntityType Name="Table_Pasporta">
+          <Key>
+            <PropertyRef Name="idMaster" />
+          </Key>
+          <Property Name="idMaster" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="number" Type="Int32" Nullable="false" />
+          <Property Name="seria" Type="Int32" Nullable="false" />
+          <Property Name="vidan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Mastera" Relationship="MalevModel.FK_Table_Pasporta_Table_Mastera" FromRole="Table_Pasporta" ToRole="Table_Mastera" />
+        </EntityType>
+        <EntityType Name="Table_Roles">
+          <Key>
+            <PropertyRef Name="idRole" />
+          </Key>
+          <Property Name="idRole" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Table_Mastera" Relationship="MalevModel.FK_Table_Mastera_Table_Roles" FromRole="Table_Roles" ToRole="Table_Mastera" />
+        </EntityType>
+        <EntityType Name="Table_VidaRabot">
+          <Key>
+            <PropertyRef Name="idVidaRaboti" />
+          </Key>
+          <Property Name="idVidaRaboti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vidRaboti" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cost" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Table_OrderingServices" Relationship="MalevModel.FK_Table_OrderingServices_Table_VidaRabot" FromRole="Table_VidaRabot" ToRole="Table_OrderingServices" />
+        </EntityType>
+        <Association Name="FK_Table_Orders_Table_Auto">
+          <End Type="MalevModel.Table_Auto" Role="Table_Auto" Multiplicity="1" />
+          <End Type="MalevModel.Table_Orders" Role="Table_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Auto">
+              <PropertyRef Name="idAuto" />
+            </Principal>
+            <Dependent Role="Table_Orders">
+              <PropertyRef Name="idAuto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_EquipmentsUsed">
+          <End Type="MalevModel.Table_EquipmentsUsed" Role="Table_EquipmentsUsed" Multiplicity="1" />
+          <End Type="MalevModel.Table_OrderingServices" Role="Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_EquipmentsUsed">
+              <PropertyRef Name="idEquipmentUsed" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idEquipmentUsed" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Mastera_Table_Genders">
+          <End Type="MalevModel.Table_Genders" Role="Table_Genders" Multiplicity="1" />
+          <End Type="MalevModel.Table_Mastera" Role="Table_Mastera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Genders">
+              <PropertyRef Name="idGender" />
+            </Principal>
+            <Dependent Role="Table_Mastera">
+              <PropertyRef Name="idGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Mastera_Table_Roles">
+          <End Type="MalevModel.Table_Roles" Role="Table_Roles" Multiplicity="1" />
+          <End Type="MalevModel.Table_Mastera" Role="Table_Mastera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Roles">
+              <PropertyRef Name="idRole" />
+            </Principal>
+            <Dependent Role="Table_Mastera">
+              <PropertyRef Name="idRole" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_Mastera">
+          <End Type="MalevModel.Table_Mastera" Role="Table_Mastera" Multiplicity="1" />
+          <End Type="MalevModel.Table_OrderingServices" Role="Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Mastera">
+              <PropertyRef Name="idMaster" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idMaster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Pasporta_Table_Mastera">
+          <End Type="MalevModel.Table_Mastera" Role="Table_Mastera" Multiplicity="1" />
+          <End Type="MalevModel.Table_Pasporta" Role="Table_Pasporta" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Mastera">
+              <PropertyRef Name="idMaster" />
+            </Principal>
+            <Dependent Role="Table_Pasporta">
+              <PropertyRef Name="idMaster" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_NewsEquipment">
+          <End Type="MalevModel.Table_NewsEquipment" Role="Table_NewsEquipment" Multiplicity="1" />
+          <End Type="MalevModel.Table_OrderingServices" Role="Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_NewsEquipment">
+              <PropertyRef Name="idNewEquipment" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idNewEquipment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_Orders">
+          <End Type="MalevModel.Table_Orders" Role="Table_Orders" Multiplicity="1" />
+          <End Type="MalevModel.Table_OrderingServices" Role="Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Orders">
+              <PropertyRef Name="idOrder" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_OrderingServices_Table_VidaRabot">
+          <End Type="MalevModel.Table_VidaRabot" Role="Table_VidaRabot" Multiplicity="1" />
+          <End Type="MalevModel.Table_OrderingServices" Role="Table_OrderingServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_VidaRabot">
+              <PropertyRef Name="idVidaRaboti" />
+            </Principal>
+            <Dependent Role="Table_OrderingServices">
+              <PropertyRef Name="idVidaRaboti" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_Orders_Table_Owners">
+          <End Type="MalevModel.Table_Owners" Role="Table_Owners" Multiplicity="1" />
+          <End Type="MalevModel.Table_Orders" Role="Table_Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Owners">
+              <PropertyRef Name="idOwner" />
+            </Principal>
+            <Dependent Role="Table_Orders">
+              <PropertyRef Name="idOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище MalevModelContainer" CdmEntityContainer="MalevEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MalevModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Auto">
+            <EntityTypeMapping TypeName="MalevModel.Table_Auto">
+              <MappingFragment StoreEntitySet="Table_Auto">
+                <ScalarProperty Name="dateRelease" ColumnName="dateRelease" />
+                <ScalarProperty Name="colorAuto" ColumnName="colorAuto" />
+                <ScalarProperty Name="regZnak" ColumnName="regZnak" />
+                <ScalarProperty Name="markAuto" ColumnName="markAuto" />
+                <ScalarProperty Name="idAuto" ColumnName="idAuto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_EquipmentsUsed">
+            <EntityTypeMapping TypeName="MalevModel.Table_EquipmentsUsed">
+              <MappingFragment StoreEntitySet="Table_EquipmentsUsed">
+                <ScalarProperty Name="costEquipment" ColumnName="costEquipment" />
+                <ScalarProperty Name="dateProduction" ColumnName="dateProduction" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="idEquipmentUsed" ColumnName="idEquipmentUsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Genders">
+            <EntityTypeMapping TypeName="MalevModel.Table_Genders">
+              <MappingFragment StoreEntitySet="Table_Genders">
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Mastera">
+            <EntityTypeMapping TypeName="MalevModel.Table_Mastera">
+              <MappingFragment StoreEntitySet="Table_Mastera">
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="birthday" ColumnName="birthday" />
+                <ScalarProperty Name="idGender" ColumnName="idGender" />
+                <ScalarProperty Name="fatherland" ColumnName="fatherland" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="idMaster" ColumnName="idMaster" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_NewsEquipment">
+            <EntityTypeMapping TypeName="MalevModel.Table_NewsEquipment">
+              <MappingFragment StoreEntitySet="Table_NewsEquipment">
+                <ScalarProperty Name="costEquipment" ColumnName="costEquipment" />
+                <ScalarProperty Name="dateProduction" ColumnName="dateProduction" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="idNewEquipment" ColumnName="idNewEquipment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_OrderingServices">
+            <EntityTypeMapping TypeName="MalevModel.Table_OrderingServices">
+              <MappingFragment StoreEntitySet="Table_OrderingServices">
+                <ScalarProperty Name="idNewEquipment" ColumnName="idNewEquipment" />
+                <ScalarProperty Name="idEquipmentUsed" ColumnName="idEquipmentUsed" />
+                <ScalarProperty Name="idMaster" ColumnName="idMaster" />
+                <ScalarProperty Name="idVidaRaboti" ColumnName="idVidaRaboti" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+                <ScalarProperty Name="idOrderingServices" ColumnName="idOrderingServices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Orders">
+            <EntityTypeMapping TypeName="MalevModel.Table_Orders">
+              <MappingFragment StoreEntitySet="Table_Orders">
+                <ScalarProperty Name="CostCroka" ColumnName="CostCroka" />
+                <ScalarProperty Name="CostEstimation" ColumnName="CostEstimation" />
+                <ScalarProperty Name="dateEntrance" ColumnName="dateEntrance" />
+                <ScalarProperty Name="idOwner" ColumnName="idOwner" />
+                <ScalarProperty Name="idAuto" ColumnName="idAuto" />
+                <ScalarProperty Name="idOrder" ColumnName="idOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Owners">
+            <EntityTypeMapping TypeName="MalevModel.Table_Owners">
+              <MappingFragment StoreEntitySet="Table_Owners">
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="fatherland" ColumnName="fatherland" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="idOwner" ColumnName="idOwner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Pasporta">
+            <EntityTypeMapping TypeName="MalevModel.Table_Pasporta">
+              <MappingFragment StoreEntitySet="Table_Pasporta">
+                <ScalarProperty Name="vidan" ColumnName="vidan" />
+                <ScalarProperty Name="seria" ColumnName="seria" />
+                <ScalarProperty Name="number" ColumnName="number" />
+                <ScalarProperty Name="idMaster" ColumnName="idMaster" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_Roles">
+            <EntityTypeMapping TypeName="MalevModel.Table_Roles">
+              <MappingFragment StoreEntitySet="Table_Roles">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="idRole" ColumnName="idRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_VidaRabot">
+            <EntityTypeMapping TypeName="MalevModel.Table_VidaRabot">
+              <MappingFragment StoreEntitySet="Table_VidaRabot">
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="vidRaboti" ColumnName="vidRaboti" />
+                <ScalarProperty Name="idVidaRaboti" ColumnName="idVidaRaboti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
